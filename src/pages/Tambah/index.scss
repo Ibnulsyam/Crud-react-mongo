@@ -14,7 +14,7 @@
   }
 }
 
-input[type=checkbox] {
+input[type="checkbox"] {
   margin-right: 5px;
   margin-top: 6px;
   margin-bottom: 16px;
@@ -25,4 +25,11 @@ input[type=checkbox] {
   box-shadow: 1px 1px 5px #ddd;
   border-radius: 5px;
   padding: 20px;
+}
+
+.warning {
+  color: red;
+  font-style: italic;
+  font-size: 12px;
+  margin-top: 10px;
 }
