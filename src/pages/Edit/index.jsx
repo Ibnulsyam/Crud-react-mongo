@@ -58,7 +58,7 @@ const Edit = (props) => {
 
   useEffect(() => {
     view();
-  }, [params]);
+  }, []);
   return (
     <div className="main">
       <div className="card">
