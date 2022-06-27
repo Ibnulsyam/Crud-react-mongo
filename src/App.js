@@ -96,7 +96,7 @@ const App = () => {
           }
         />
         <Route path="/detail/:id" element={<Detail />} />
-        <Route path="/edit/:id" element={<Edit />} />
+        <Route path="/edit/:id" element={<Edit getapi={getDataToApi} />} />
         <Route path="/tambah" element={<Tambah addProduct={postDataToApi} />} />
       </Routes>
     </div>

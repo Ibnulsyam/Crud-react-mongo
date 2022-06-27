@@ -6,7 +6,7 @@ import Input from "../../components/Input";
 
 const Edit = (props) => {
   const params = useParams();
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({});
   const [empty, setEmpty] = useState("");
 
   let id = params.id;
@@ -34,6 +34,7 @@ const Edit = (props) => {
           status: false,
         });
         setEmpty("");
+        props.getapi();
       });
   };
 
