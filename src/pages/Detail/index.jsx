@@ -20,7 +20,7 @@ const Detail = () => {
 
   useEffect(() => {
     getDataByid();
-  }, [params]);
+  }, [detailProduct]);
   return (
     <div className="main">
       <Link to="/" className="btn btn-primary">
