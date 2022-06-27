@@ -10,9 +10,11 @@ const Detail = () => {
   let id = params.id;
 
   const getDataByid = () => {
-    axios.get(`http://localhost:5000/api/v2/product/${id}`).then((rest) => {
-      setDetailProduct(rest.data);
-    });
+    axios
+      .get(`https://express-mongoose-api.herokuapp.com/api/product${id}`)
+      .then((rest) => {
+        setDetailProduct(rest.data);
+      });
   };
 
   useEffect(() => {
