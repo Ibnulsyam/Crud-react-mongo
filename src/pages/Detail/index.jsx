@@ -11,9 +11,10 @@ const Detail = () => {
 
   const getDataByid = () => {
     axios
-      .get(`https://express-mongoose-api.herokuapp.com/api/product${id}`)
+      .get(`https://express-mongoose-api.herokuapp.com/api/product/${id}`)
       .then((rest) => {
         setDetailProduct(rest.data);
+        console.log(rest.data);
       });
   };
 

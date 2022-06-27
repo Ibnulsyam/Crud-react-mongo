@@ -12,14 +12,19 @@ const Edit = (props) => {
   let id = params.id;
 
   const view = () => {
-    axios.get(`http://localhost:5000/api/v2/product/${id}`).then((rest) => {
-      setProduct(rest.data);
-    });
+    axios
+      .get(`https://express-mongoose-api.herokuapp.com/api/product/${id}`)
+      .then((rest) => {
+        setProduct(rest.data);
+      });
   };
 
   const update = () => {
     axios
-      .put(`http://localhost:5000/api/v2/product/${id}`, product)
+      .put(
+        `https://express-mongoose-api.herokuapp.com/api/product/${id}`,
+        product
+      )
       .then((res) => {
         swal("Good job!", "Data Berhasil Diupdate", "success");
         setProduct({

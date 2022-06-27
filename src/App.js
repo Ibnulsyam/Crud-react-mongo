@@ -12,12 +12,28 @@ import swal from "sweetalert";
 const App = () => {
   const [products, setProducts] = useState([]);
   const [productList, setProductList] = useState({});
+  const [search, setSearch] = useState("");
+  const [notFound, setNotFound] = useState(false);
 
   const getDataToApi = async () => {
-    const result = await axios.get(
-      "https://express-mongoose-api.herokuapp.com/api/product"
-    );
-    setProducts(result.data);
+    if (search) {
+      const result = await axios.get(
+        `https://express-mongoose-api.herokuapp.com/api/product?name=${search}`
+      );
+
+      if (result.data.length === 0) {
+        setNotFound(true);
+      } else {
+        setNotFound(false);
+      }
+      setProducts(result.data);
+    } else {
+      const result = await axios.get(
+        "https://express-mongoose-api.herokuapp.com/api/product"
+      );
+      setProducts(result.data);
+      setNotFound(false);
+    }
   };
 
   const postDataToApi = (addProduct) => {
@@ -55,9 +71,13 @@ const App = () => {
       }
     });
   };
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
   useEffect(() => {
     getDataToApi();
-  }, [productList]);
+  }, [productList, search]);
 
   return (
     <div>
@@ -66,7 +86,14 @@ const App = () => {
         <Route
           exact
           path="/"
-          element={<Home product={products} onRemove={handleRemove} />}
+          element={
+            <Home
+              product={products}
+              onRemove={handleRemove}
+              change={handleSearch}
+              notFound={notFound}
+            />
+          }
         />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/edit/:id" element={<Edit />} />

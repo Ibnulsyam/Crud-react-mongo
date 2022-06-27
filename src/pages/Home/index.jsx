@@ -10,7 +10,11 @@ const Home = (props) => {
         Tambah Produk
       </Link>
       <div className="search">
-        <input type="text" placeholder="Masukan kata kunci..." />
+        <input
+          type="text"
+          placeholder="Masukan kata kunci..."
+          onChange={props.change}
+        />
       </div>
       <table className="table">
         <thead>
@@ -23,34 +27,42 @@ const Home = (props) => {
           </tr>
         </thead>
         <tbody>
-          {props.product.map((products, key) => (
-            <tr key={key}>
-              <td>{key + 1}</td>
-              <td>{products.name}</td>
-              <td className="text-center">RP.{products.price}</td>
-              <td className="text-center">{products.stock}</td>
-              <td className="text-center">
-                <button
-                  onClick={() => navigate(`/detail/${products._id}`)}
-                  className="btn btn-sm btn-info"
-                >
-                  Detail
-                </button>
-                <button
-                  onClick={() => navigate(`/edit/${products._id}`)}
-                  className="btn btn-sm btn-warning"
-                >
-                  Edit
-                </button>
-                <button
-                  className="btn btn-sm btn-danger"
-                  onClick={() => props.onRemove(products)}
-                >
-                  Delete
-                </button>
+          {props.notFound ? (
+            <tr>
+              <td colSpan={5} className="not-found text-center">
+                Product is not found !
               </td>
             </tr>
-          ))}
+          ) : (
+            props.product.map((products, key) => (
+              <tr key={key}>
+                <td>{key + 1}</td>
+                <td>{products.name}</td>
+                <td className="text-center">RP.{products.price}</td>
+                <td className="text-center">{products.stock}</td>
+                <td className="text-center">
+                  <button
+                    onClick={() => navigate(`/detail/${products._id}`)}
+                    className="btn btn-sm btn-info"
+                  >
+                    Detail
+                  </button>
+                  <button
+                    onClick={() => navigate(`/edit/${products._id}`)}
+                    className="btn btn-sm btn-warning"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="btn btn-sm btn-danger"
+                    onClick={() => props.onRemove(products)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>
