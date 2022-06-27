@@ -47,7 +47,7 @@ const Edit = (props) => {
   const handleClick = (e) => {
     let temp = { ...product };
     temp[e.target.name] = e.target.cheked;
-    setProduct(temp);
+    setProduct(temp.status);
   };
 
   const handleSubmit = () => {
