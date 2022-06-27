@@ -14,13 +14,18 @@ const App = () => {
   const [productList, setProductList] = useState({});
 
   const getDataToApi = async () => {
-    const result = await axios.get("http://localhost:5000/api/v2/product");
+    const result = await axios.get(
+      "https://express-mongoose-api.herokuapp.com/api/product"
+    );
     setProducts(result.data);
   };
 
   const postDataToApi = (addProduct) => {
     axios
-      .post("http://localhost:5000/api/v2/product", addProduct)
+      .post(
+        "https://express-mongoose-api.herokuapp.com/api/product",
+        addProduct
+      )
       .then((result) => setProductList(addProduct));
   };
 
@@ -40,7 +45,9 @@ const App = () => {
           button: "OK",
         }).then(() => {
           axios
-            .delete(`http://localhost:5000/api/v2/product/${id._id}`)
+            .delete(
+              `https://express-mongoose-api.herokuapp.com/api/product/${id._id}`
+            )
             .then((res) => {
               getDataToApi();
             });
