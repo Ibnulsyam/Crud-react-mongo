@@ -30,9 +30,9 @@ const Tambah = (props) => {
   const handleSubmit = () => {
     if (addControl.name.length === 0) {
       setEmpty("Name Can't be Empty!");
-    } else if (addControl.price === 0) {
+    } else if (addControl.price.length === 0) {
       setEmpty("Price Can't be Empty!");
-    } else if (addControl.stock === 0) {
+    } else if (addControl.stock.length === 0) {
       setEmpty("Stock Can't be Empty!");
     } else {
       swal({
